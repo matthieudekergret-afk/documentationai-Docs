@@ -1,0 +1,233 @@
+---
+title: Configuration
+description: Understand the key settings and options available for customizing your documentation space. Use this page to manage formatting, metadata, and site behavior.
+---
+
+## Overview
+
+Use this page to configure your documentation space for **Matthieu de KERGRET**. You can adjust site settings, metadata, navigation, and theme behavior without changing your content structure.
+
+This starter kit is designed to be generic, so you can adapt each example to your own naming conventions, URLs, and editorial workflow.
+
+<Callout kind="info">
+
+Treat the examples on this page as a starting point. Replace sample values with your own product name, links, and preferred defaults.
+
+</Callout>
+
+## What you can configure
+
+<Columns cols={2}>
+  <Card title="Site settings" icon="settings" href="#site-settings">
+    Control the title, description, and global defaults that appear across your site.
+  </Card>
+  <Card title="Metadata" icon="book-open" href="#metadata">
+    Define page-level information that improves search, sharing, and organization.
+  </Card>
+  <Card title="Navigation" icon="chevron-right" href="#navigation-options">
+    Shape how readers move through sections, pages, and related resources.
+  </Card>
+  <Card title="Theme customization" icon="shield" href="#theme-customization">
+    Match the look and feel of your documentation with colors, spacing, and emphasis styles.
+  </Card>
+</Columns>
+
+## Site settings
+
+Start with the core configuration that defines your documentation experience. These settings usually control the name of the space, the primary description, and the default behavior of shared components.
+
+<Steps>
+  <Step title="Set the site identity" icon="settings">
+
+Update the site title and description so readers immediately understand what the documentation is for.
+
+```yaml
+site:
+  title: "Matthieu de KERGRET"
+  description: "Welcome to Matthieu de KERGRET's documentation. This is your default documentation space where you can organize and manage all your project documentation."
+```
+
+  </Step>
+  <Step title="Choose the default language" icon="book-open">
+
+Pick the language you want to display in navigation labels, helper text, and sample content.
+
+```yaml
+site:
+  language: "en"
+```
+
+  </Step>
+  <Step title="Define default links" icon="chevron-right">
+
+Point readers to the places they visit most often, such as your homepage, support channel, or release notes.
+
+```yaml
+site:
+  home: "/introduction"
+  docs: "/quickstart"
+  changelog: "/changelog"
+```
+
+  </Step>
+</Steps>
+
+## Metadata
+
+Metadata helps you describe pages consistently and makes your content easier to manage. Use it for titles, summaries, owners, and tags that help readers find the right page faster.
+
+<CodeGroup tabs="YAML,JSON">
+  ```yaml
+page:
+  title: "Configuration"
+  description: "Understand the key settings and options available for customizing your documentation space."
+  tags:
+    - "site settings"
+    - "metadata"
+    - "navigation"
+```
+  ```json
+{
+  "page": {
+    "title": "Configuration",
+    "description": "Understand the key settings and options available for customizing your documentation space.",
+    "tags": ["site settings", "metadata", "navigation"]
+  }
+}
+```
+</CodeGroup>
+
+### Recommended metadata fields
+
+| Field | Purpose | Example |
+|------|---------|---------|
+| `title` | Displays the page name in navigation and search results. | `Configuration` |
+| `description` | Summarizes the page for previews and indexing. | `Customize site behavior and structure.` |
+| `tags` | Groups related pages for easier discovery. | `["theme", "navigation"]` |
+| `updatedAt` | Helps readers identify recent changes. | `2026-01-15` |
+
+## Navigation options
+
+Use navigation settings to help readers move through your documentation without friction. Keep the structure simple, and group related pages together so users can scan the sidebar quickly.
+
+<Tabs>
+  <Tab title="Sidebar" icon="chevron-right">
+
+Use a short list of top-level sections and keep related items grouped together.
+
+```yaml
+navigation:
+  sidebar:
+    - title: "Introduction"
+      href: "/introduction"
+    - title: "Quickstart"
+      href: "/quickstart"
+    - title: "Configuration"
+      href: "/configuration"
+    - title: "Changelog"
+      href: "/changelog"
+```
+
+  </Tab>
+  <Tab title="Top bar" icon="monitor">
+
+Use the top bar for high-value links such as support, product updates, or external resources.
+
+```yaml
+navigation:
+  topbar:
+    support: "https://docs.example.com"
+    dashboard: "https://dashboard.example.com"
+```
+
+  </Tab>
+  <Tab title="Footer" icon="book-open">
+
+Add footer links for legal pages, contact details, or internal resources that do not need to appear in the main sidebar.
+
+```yaml
+navigation:
+  footer:
+    - label: "Docs"
+      href: "/introduction"
+    - label: "Changelog"
+      href: "/changelog"
+```
+
+  </Tab>
+</Tabs>
+
+## Theme customization
+
+Theme settings let you adapt the visual style without rewriting content. The brand color for this starter kit is `#3B82F6`, which works well for links, accents, and active states.
+
+<Callout kind="tip">
+
+Choose contrast-friendly colors for text and backgrounds. If you use a branded accent, verify that buttons, links, and callouts remain easy to read.
+
+</Callout>
+
+<CodeGroup tabs="CSS,TypeScript">
+  ```css
+:root {
+  --brand-color: #3B82F6;
+  --link-color: #3B82F6;
+  --accent-color: #3B82F6;
+}
+```
+  ```typescript
+export const theme = {
+  brandColor: "#3B82F6",
+  accentColor: "#3B82F6",
+  mode: "light"
+};
+```
+</CodeGroup>
+
+### Theme checklist
+
+- Use one primary accent color across links and buttons.
+- Keep typography consistent across headings and body text.
+- Preserve enough spacing between sections for readability.
+- Test the theme on both light and dark backgrounds.
+- Make sure code blocks remain legible in every mode.
+
+## Advanced options
+
+<Expandable title="Use environment-specific values" default-open="false">
+
+You can define separate values for preview, staging, and production environments. This helps you test changes safely before publishing them to readers.
+
+```bash
+DOCS_SITE_TITLE="Matthieu de KERGRET"
+DOCS_SITE_URL="https://docs.example.com"
+DOCS_THEME="light"
+```
+
+</Expandable>
+
+<Expandable title="Add custom branding details" default-open="false">
+
+You can extend the starter kit with logos, favicons, and custom social metadata. Keep the configuration focused so future updates remain easy to maintain.
+
+```yaml
+branding:
+  logo: "/assets/logo.svg"
+  favicon: "/assets/favicon.ico"
+  themeColor: "#3B82F6"
+```
+
+</Expandable>
+
+## Next steps
+
+After you finish configuration, review your content structure and update your first pages so the navigation reflects your actual documentation. If you are just starting out, begin with the overview and then refine the settings as your project grows.
+
+<Columns cols={2}>
+  <Card title="Start with the introduction" icon="book-open" href="/introduction" horizontal>
+    Build a clear entry point for readers who are new to your documentation.
+  </Card>
+  <Card title="Set up your workflow" icon="rocket" href="/quickstart" horizontal>
+    Connect configuration with a practical setup flow that you can reuse later.
+  </Card>
+</Columns>

@@ -1,0 +1,206 @@
+---
+title: Access and Permissions
+description: Document how users authenticate and what permissions they need to work with the documentation workspace. Include role-based access and common access flows.
+---
+
+## Overview
+
+This starter kit shows a generic access model you can adapt for your own workspace. You can use it to describe how users sign in, what they can do after login, and which roles your team should assign for common tasks.
+
+The examples below use placeholder services and realistic flows, but they are intentionally generic. Replace them with your own identity provider, workspace roles, and policy rules as needed.
+
+<Callout kind="info">
+  This page is sample documentation for a starter kit. It helps you define access patterns without assuming anything about your real system.
+</Callout>
+
+## Common access roles
+
+Use roles to simplify permissions and make onboarding easier. A small workspace often starts with only a few roles, then expands as the team grows.
+
+<Columns cols={2}>
+  <Card title="Owner" icon="shield" href="#roles-and-permissions">
+    Full control over workspace settings, billing, and permission management.
+  </Card>
+  <Card title="Editor" icon="book-open" href="#roles-and-permissions">
+    Can create, update, and publish documentation content.
+  </Card>
+  <Card title="Reviewer" icon="check-circle" href="#roles-and-permissions">
+    Can comment on drafts and approve changes before publication.
+  </Card>
+  <Card title="Viewer" icon="users" href="#roles-and-permissions">
+    Can read published content and access shared links.
+  </Card>
+</Columns>
+
+## Login flow
+
+Most teams follow a simple sign-in sequence. You can document the exact screens and policy checks your workspace uses.
+
+<Steps>
+  <Step title="Open the sign-in page" icon="monitor">
+    Go to your workspace login screen and choose the sign-in method your organization supports.
+  </Step>
+  <Step title="Verify your identity" icon="lock">
+    Enter your email, password, or single sign-on details. If your policy requires it, complete a second verification step.
+  </Step>
+  <Step title="Reach the workspace" icon="rocket">
+    After authentication succeeds, you land in the workspace dashboard and can continue based on your role.
+  </Step>
+</Steps>
+
+## Authentication methods
+
+Different teams prefer different login methods. Use the tabs below to describe the approach that matches your setup.
+
+<Tabs>
+  <Tab title="Email and password" icon="key">
+    
+    Use a standard username and password flow for smaller teams or internal tools. This option is easy to explain and works well when you manage users directly.
+
+    ```bash
+    curl -X POST "https://auth.example.com/login" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "email": "alex.dupont@example.com",
+        "password": "ExamplePassword123!"
+      }'
+    ```
+
+  </Tab>
+  <Tab title="Single sign-on" icon="lock">
+    
+    Use your organization identity provider for centralized access. This reduces password handling and keeps account lifecycle management in one place.
+
+    ```bash
+    curl -X POST "https://auth.example.com/sso/start" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "provider": "okta",
+        "redirectUrl": "https://docs.example.com/workspace"
+      }'
+    ```
+
+  </Tab>
+  <Tab title="Magic link" icon="zap">
+    
+    Use an email link for low-friction access when you want to avoid passwords. This is common for review-only or occasional contributors.
+
+    ```bash
+    curl -X POST "https://auth.example.com/magic-link" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "email": "reviewer@example.com",
+        "redirectUrl": "https://docs.example.com/workspace"
+      }'
+    ```
+
+  </Tab>
+</Tabs>
+
+## Roles and permissions
+
+Map every role to a small, clear set of actions. That makes it easier for users to understand what they can do and helps you avoid over-permissioning.
+
+| Role | Can do | Should not do |
+|------|--------|---------------|
+| Owner | Manage users, change security settings, and approve workspace policy | Grant access without review if your policy forbids it |
+| Editor | Create drafts, edit pages, and publish approved content | Modify security settings or remove owners |
+| Reviewer | Comment on drafts and approve content for release | Change workspace permissions or publish without approval |
+| Viewer | Read published documentation and access shared pages | Edit content or manage user access |
+
+<Callout kind="tip">
+  Keep permissions narrow at first. You can always expand access later, but removing unnecessary access is harder once users rely on it.
+</Callout>
+
+## Implementation example
+
+The example below shows a simple access check you can adapt for your own application. It uses a role value in the session payload and blocks actions that require elevated permissions.
+
+<CodeGroup tabs="TypeScript,Python,Bash">
+  ```typescript
+  type Role = "owner" | "editor" | "reviewer" | "viewer";
+
+  function canPublish(role: Role): boolean {
+    return role === "owner" || role === "editor";
+  }
+
+  const session = {
+    userId: "usr_1024",
+    email: "alex.dupont@example.com",
+    role: "editor"
+  };
+
+  if (canPublish(session.role)) {
+    console.log("Publish button enabled");
+  } else {
+    console.log("Publish button hidden");
+  }
+  ```
+
+  ```python
+  def can_publish(role: str) -> bool:
+      return role in ["owner", "editor"]
+
+  session = {
+      "userId": "usr_1024",
+      "email": "alex.dupont@example.com",
+      "role": "editor",
+  }
+
+  if can_publish(session["role"]):
+      print("Publish button enabled")
+  else:
+      print("Publish button hidden")
+  ```
+
+  ```bash
+  ROLE="editor"
+  if [ "$ROLE" = "owner" ] || [ "$ROLE" = "editor" ]; then
+    echo "Publish button enabled"
+  else
+    echo "Publish button hidden"
+  fi
+  ```
+</CodeGroup>
+
+## Security basics
+
+Good authentication content should also explain safe behavior. Users should know how to protect their account, how to recognize suspicious activity, and when to contact an administrator.
+
+<Callout kind="alert">
+  Never share credentials in chat, tickets, or public notes. If you suspect account compromise, rotate access immediately and review active sessions.
+</Callout>
+
+## Advanced access scenarios
+
+Use these examples when your workspace supports more than one path into the product.
+
+<ExpandableGroup>
+  <Expandable title="Guest access" default-open="true">
+    
+    Guest access works well for reviewers or external collaborators who only need a limited view. You can restrict guests to selected pages and disable editing completely.
+
+  </Expandable>
+  <Expandable title="Temporary elevated access" default-open="false">
+    
+    Temporary elevated access is useful during launches or audits. Grant it for a fixed period, then revoke it automatically when the task ends.
+
+  </Expandable>
+  <Expandable title="Session timeout" default-open="false">
+    
+    Session timeout helps reduce risk on shared devices. If a user stays inactive too long, ask them to sign in again before continuing.
+
+  </Expandable>
+</ExpandableGroup>
+
+## Access checklist
+
+Before you publish your access policy, confirm the basics are in place.
+
+1. You define at least one role for each common task.
+2. You document the sign-in method users should expect.
+3. You describe what happens after a failed login.
+4. You explain how to request more access.
+5. You list the security rules users must follow.
+
+If you want a simple rollout path, start with Viewer, Editor, and Owner, then add more specialized roles only when your workflow needs them.

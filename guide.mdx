@@ -1,0 +1,166 @@
+---
+title: Writing Guides
+description: Learn how to create clear, reusable documentation pages for common product workflows. This guide focuses on practical patterns for tutorials, walkthroughs, and task-based content.
+---
+
+## Overview
+
+Use this page as a starter kit for writing practical documentation that helps people complete a task quickly. You can adapt the structure, examples, and tone to match your product while keeping the page easy to scan and reuse.
+
+This template is intentionally generic. It gives you a reliable pattern for tutorials, how-to guides, and task-based docs without assuming anything about your product’s internal systems.
+
+<Callout kind="info">
+  This is a starter kit template. Replace the sample workflows, labels, and code with your own product details before publishing.
+</Callout>
+
+## When to use a guide
+
+A guide works best when you want to show someone how to complete one specific task from start to finish. It should answer what to do, why it matters, and what success looks like.
+
+Use a guide when you need to:
+
+- Walk through a repeatable workflow
+- Explain a setup process
+- Document a common customer task
+- Provide a clear path from goal to result
+
+## Common guide patterns
+
+<Columns cols={3}>
+  <Card title="Tutorial" icon="book-open" href="#tutorial-structure">
+    Teach a complete workflow with clear steps and a working result.
+  </Card>
+  <Card title="How-to" icon="settings" href="#task-based-docs">
+    Help readers finish one task with minimal context and direct actions.
+  </Card>
+  <Card title="Best practices" icon="shield" href="#content-best-practices">
+    Show the conventions that keep documentation consistent and reusable.
+  </Card>
+</Columns>
+
+## Tutorial structure
+
+A strong tutorial moves from goal to outcome in a predictable sequence. Start with a short introduction, then show the setup, then demonstrate the result.
+
+<Steps>
+  <Step title="State the goal" icon="target">
+    Begin with one sentence that tells the reader what they will build or accomplish.
+  </Step>
+  <Step title="List prerequisites" icon="check-circle">
+    Mention any access, permissions, or environment setup the reader needs before starting.
+  </Step>
+  <Step title="Show the process" icon="play-circle">
+    Break the workflow into small actions. Keep each step focused on one outcome.
+  </Step>
+  <Step title="Confirm success" icon="check">
+    End with a visible result, such as a saved record, a completed dashboard, or a successful response.
+  </Step>
+</Steps>
+
+### Example tutorial outline
+
+Use this structure when you want a simple and reusable template:
+
+1. Introduction
+2. Prerequisites
+3. Step-by-step instructions
+4. Verification
+5. Next steps
+
+## Task-based docs
+
+Task-based documentation is the best choice when readers already know what they want to do. They do not need a long introduction; they need direct instructions.
+
+<CodeGroup tabs="JavaScript,cURL">
+  ```javascript
+  const response = await fetch("https://api.example.com/v1/projects", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer YOUR_API_KEY"
+    },
+    body: JSON.stringify({
+      name: "Launch checklist",
+      owner: "Documentation Team"
+    })
+  });
+
+  const project = await response.json();
+  console.log(project.id);
+  ```
+
+  ```bash
+  curl -X POST "https://api.example.com/v1/projects" \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer YOUR_API_KEY" \
+    -d '{
+      "name": "Launch checklist",
+      "owner": "Documentation Team"
+    }'
+  ```
+</CodeGroup>
+
+This example shows a complete request flow that creates a project record. You can swap the endpoint, field names, and response handling to match your product.
+
+## Writing best practices
+
+<Columns cols={2}>
+  <Card title="Be specific" icon="zap" href="#content-best-practices">
+    Use concrete actions like "create", "select", and "review" instead of vague language.
+  </Card>
+  <Card title="Keep it scannable" icon="chevron-right" href="#content-best-practices">
+    Use short paragraphs, clear headings, and lists to reduce friction.
+  </Card>
+</Columns>
+
+### Content best practices
+
+1. Start with the user goal.
+2. Use one task per section.
+3. Keep sentences short and active.
+4. Show example data that looks realistic.
+5. End with what the reader should see next.
+
+<Callout kind="tip">
+  If your workflow includes configuration values, write them as inline code like `APP_ENV` or `YOUR_API_KEY` so readers can copy them safely.
+</Callout>
+
+## Platform-specific presentation
+
+<Tabs>
+  <Tab title="New documentation" icon="book-open">
+    Use this format when readers need a full walkthrough with context, examples, and verification.
+  </Tab>
+  <Tab title="Quick reference" icon="terminal">
+    Use this format when readers need fast instructions and already understand the product.
+  </Tab>
+  <Tab title="Reusable template" icon="settings">
+    Use this format when your team wants a consistent structure across many pages.
+  </Tab>
+</Tabs>
+
+## Advanced notes
+
+<Expandable title="What should you avoid?" default-open="false">
+  
+Avoid long introductions, overly technical jargon, and steps that combine too many actions. You should also avoid examples that depend on hidden internal context.
+
+</Expandable>
+
+<Expandable title="How do you customize this template?" default-open="false">
+  
+Replace the sample code, names, and workflow labels with your own product terms. Keep the structure if it helps readers move from task to outcome.
+
+</Expandable>
+
+## Final checklist
+
+Before you publish a guide, confirm that it:
+
+- Starts with the reader’s goal
+- Uses clear headings and short sections
+- Includes a realistic example
+- Ends with a verification step
+- Can stand alone without external context
+
+This page gives you a solid starting point for tutorials, walkthroughs, and task-based content. From here, you can adapt the examples to match your product and audience while keeping the documentation clear and reusable.

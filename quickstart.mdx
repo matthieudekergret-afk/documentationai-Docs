@@ -1,0 +1,187 @@
+---
+title: Quickstart
+description: Get up and running quickly with the core setup flow. This page covers the fastest path from an empty docs space to a usable documentation site.
+---
+
+## Overview
+
+Welcome to Matthieu de KERGRET's documentation starter kit. This page gives you the fastest path from an empty docs space to a working documentation site.
+
+Use this quickstart to create your first page, shape your site structure, and publish a clean first version you can refine later.
+
+<Callout kind="info">
+
+This is a starter kit template. Replace the sample content with your own product details, workflows, and terminology as you build out the site.
+
+</Callout>
+
+<Columns cols={3}>
+  <Card title="Initial Setup" icon="settings" href="#initial-setup">
+    Prepare the site, add your first content, and confirm the structure.
+  </Card>
+  <Card title="First Page" icon="book-open" href="#first-documentation-page">
+    Create a usable page with a clear title, purpose, and example content.
+  </Card>
+  <Card title="Publishing Basics" icon="rocket" href="#publishing-basics">
+    Review the final checks before you publish your documentation.
+  </Card>
+</Columns>
+
+## Initial setup
+
+Start by defining the basic shape of your documentation. Keep the first version small so you can publish quickly, then expand it after you verify the core flow.
+
+<Steps>
+  <Step title="Create the site skeleton" icon="folder-plus">
+
+    Create the top-level pages you want readers to see first. A simple starter set is:
+
+    - Home or introduction
+    - Quickstart
+    - Authentication
+    - Changelog
+
+    Keep page names short and make sure each page has one clear purpose.
+
+  </Step>
+  <Step title="Add your brand details" icon="palette">
+
+    Apply the Matthieu de KERGRET brand color `#3B82F6` to links, accents, or callouts so the site feels consistent from the start.
+
+    Use a neutral background and strong contrast for body text so the documentation stays easy to read.
+
+  </Step>
+  <Step title="Confirm your content workflow" icon="check-circle">
+
+    Decide who writes content, who reviews it, and how changes are published. Even a simple two-step review process helps keep the site accurate.
+
+  </Step>
+</Steps>
+
+## First documentation page
+
+Your first page should answer one question: what should a new reader do next?
+
+A good first page usually includes a short introduction, one example, and a path forward. Keep it practical and avoid overloading it with every possible detail.
+
+<CodeGroup tabs="Markdown,HTML,JSON">
+  ```markdown
+  ## Getting started
+
+  To begin, create a page with a clear title and a short introduction.
+
+  Then add one code example, one screenshot, or one simple checklist.
+  ```
+
+  ```html
+  <section>
+    <h2>Getting started</h2>
+    <p>Create a page with a clear title and a short introduction.</p>
+  </section>
+  ```
+
+  ```json
+  {
+    "title": "Getting started",
+    "summary": "Create one useful page first, then expand the site step by step."
+  }
+  ```
+</CodeGroup>
+
+### Suggested page structure
+
+<Tabs>
+  <Tab title="Intro" icon="info">
+
+    Open with a short explanation of what the reader will accomplish. Use plain language and keep it focused on one task.
+
+  </Tab>
+  <Tab title="Example" icon="code">
+
+    Add a realistic example that readers can copy or adapt. For a docs starter, a short configuration sample or setup snippet works well.
+
+  </Tab>
+  <Tab title="Next step" icon="arrow-right">
+
+    End with a single link or action that moves the reader deeper into the docs.
+
+  </Tab>
+</Tabs>
+
+## Site structure
+
+A strong documentation site is easy to scan. Group related pages together and use consistent naming so readers can find information quickly.
+
+<Columns cols={2}>
+  <Card title="Core docs" icon="book-open" href="#first-documentation-page">
+    Place setup, concepts, and usage guides in the main navigation.
+  </Card>
+  <Card title="Reference pages" icon="code" href="#publishing-basics">
+    Keep technical details separate so they are easy to scan later.
+  </Card>
+</Columns>
+
+### Recommended structure
+
+- **Overview**: explain what the documentation covers
+- **Quickstart**: show the fastest setup path
+- **Guides**: provide task-based walkthroughs
+- **Reference**: document options, fields, and behaviors
+- **Changelog**: summarize notable updates over time
+
+This structure gives you a clean path from discovery to deeper detail. It also makes the site easier to maintain as your content grows.
+
+<Expandable title="How much content should you write first?" default-open="false">
+
+Start with enough content for one successful reading session. In practice, that means one overview page, one quickstart page, and one follow-up page that users can open next.
+
+You can add more depth later. The goal is to publish something useful now rather than wait for a complete site.
+
+</Expandable>
+
+## Publishing basics
+
+Before you publish, check that the page is readable on its own. Readers should understand the purpose of the page without needing another tab open.
+
+Use this final checklist to confirm the basics:
+
+1. The title is clear and matches the page content.
+2. The introduction explains why the page exists.
+3. The code examples are realistic and runnable.
+4. The navigation path is obvious.
+5. The page uses the same brand style as the rest of the site.
+
+<Callout kind="tip">
+
+If you are building this site for the first time, publish an intentionally small version first. You can improve layout, navigation, and examples after you confirm the structure works.
+
+</Callout>
+
+<CodeGroup tabs="bash,JavaScript">
+  ```bash
+  npm run build
+  npm run preview
+  ```
+
+  ```javascript
+  const published = true;
+  const siteName = "Matthieu de KERGRET";
+  console.log(`${siteName} documentation is ready to review`);
+  ```
+</CodeGroup>
+
+## Next steps
+
+Once the quickstart is live, expand the site with task-focused pages that answer specific questions. A good next move is to add authentication, configuration, or a deeper guide based on what your readers need most.
+
+<Columns cols={3}>
+  <Card title="Authentication" icon="lock" href="/authentication">
+    Add sign-in or access-control guidance when your documentation needs protection.
+  </Card>
+  <Card title="Changelog" icon="check-circle" href="/changelog">
+    Track release notes and notable changes in one easy-to-scan place.
+  </Card>
+  <Card title="Introduction" icon="help-circle" href="/introduction">
+    Build a landing page that explains the site at a glance.
+  </Card>
+</Columns>
